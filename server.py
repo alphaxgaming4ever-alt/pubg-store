@@ -3,7 +3,8 @@ import requests
 
 app = Flask("pubg_store")
 
-BOT_TOKEN = "8752760467:AAHN9jN8bnVDA4pN2bPQqVlq5KYANQyw_9w"
+import os
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = "1338644072"
 
 @app.route("/")
