@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PUBG Mobile UC Store</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background:
+                radial-gradient(circle at top, #252014 0%, #0d1018 38%, #070910 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+
+        header {
+            padding: 55px 20px 45px;
+            text-align: center;
+            background:
+                linear-gradient(180deg, rgba(245,166,35,0.12), transparent);
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+        }
+
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #ffcc4d, #e68a00);
+            font-size: 36px;
+            box-shadow: 0 12px 40px rgba(245,166,35,0.25);
+            margin-bottom: 18px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: clamp(30px, 6vw, 48px);
+            letter-spacing: -1px;
+        }
+
+        header h1 span {
+            color: #ffb52e;
+        }
+
+        header p {
+            color: #aeb4c2;
+            font-size: 17px;
+            margin: 12px 0 0;
+        }
+
+        /* MAIN */
+
+        .container {
+            width: min(1100px, calc(100% - 30px));
+            margin: auto;
+            padding: 45px 0 70px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        .section-title p {
+            color: #858c9b;
+            margin-top: 8px;
+        }
+
+        /* PRODUCTS */
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #171c28, #10141e);
+            border: 1px solid #2c3444;
+            border-radius: 20px;
+            padding: 28px 22px;
+            text-align: center;
+            transition: transform .25s ease, border-color .25s ease, box-shadow .25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-7px);
+            border-color: #f5a623;
+            box-shadow: 0 15px 40px rgba(0,0,0,.35);
+        }
+
+        .card.popular {
+            border-color: #f5a623;
+            box-shadow: 0 0 30px rgba(245,166,35,.10);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: #f5a623;
+            color: #111;
+            padding: 6px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .uc-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .uc {
+            font-size: 31px;
+            font-weight: 800;
+        }
+
+        .description {
+            color: #858c9b;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 22px 0;
+            color: #ffbd3d;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            border: 0;
+            border-radius: 11px;
+            background: linear-gradient(135deg, #ffc44d, #ed9410);
+            color: #151515;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: transform .2s ease, filter .2s ease;
+        }
+
+        button:hover {
+            filter: brightness(1.08);
+transform: scale(1.02);
+        }
+
+        button:active {
+            transform: scale(.98);
+        }
+
+        /* ORDER */
+
+        .order {
+            display: none;
+            max-width: 500px;
+            margin: 50px auto 0;
+            padding: 30px;
+            background: linear-gradient(145deg, #171c28, #10141e);
+            border: 1px solid #30394c;
+            border-radius: 22px;
+            box-shadow: 0 20px 60px rgba(0,0,0,.35);
+            animation: showOrder .3s ease;
+        }
+
+        @keyframes showOrder {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .order h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .selected-product {
+            text-align: center;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 12px;
+            background: rgba(245,166,35,.09);
+            border: 1px solid rgba(245,166,35,.25);
+            color: #ffc44d;
+            font-weight: bold;
+        }
+
+        label {
+            display: block;
+            margin: 15px 0 7px;
+            color: #c5cad4;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border-radius: 11px;
+            border: 1px solid #343d4f;
+            outline: none;
+            background: #0b0f18;
+            color: white;
+            font-size: 16px;
+        }
+
+        input:focus {
+            border-color: #f5a623;
+            box-shadow: 0 0 0 3px rgba(245,166,35,.10);
+        }
+
+        .submit-btn {
+            margin-top: 20px;
+        }
+
+        .back {
+            margin-top: 10px;
+            background: #293142;
+            color: #fff;
+        }
+
+        .back:hover {
+            background: #343e51;
+        }
+
+        /* INFO */
+
+        .info {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 50px;
+        }
+
+        .info-box {
+            padding: 22px 15px;
+            text-align: center;
+            background: rgba(21,27,41,.75);
+            border: 1px solid #252d3d;
+            border-radius: 16px;
+        }
+
+        .info-box .icon {
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .info-box strong {
+            display: block;
+            font-size: 15px;
+        }
+
+        .info-box span {
+            display: block;
+            color: #7f8796;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+
+        /* FOOTER */
+
+        footer {
+            text-align: center;
+            padding: 25px 15px;
+            border-top: 1px solid #1c2330;
+            color: #626a79;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 650px) {
+
+            header {
+                padding: 40px 15px 35px;
+            }
+
+            .container {
+                padding-top: 30px;
+            }
+
+            .products {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .card {
+                padding: 20px 13px;
+                border-radius: 16px;
+            }
+
+            .uc-icon {
+                font-size: 38px;
+            }
+
+            .uc {
+                font-size: 23px;
+            }
+
+            .price {
+                font-size: 20px;
+                margin: 15px 0;
+            }
+
+            button {
+                padding: 12px 8px;
+                font-size: 14px;
+            }
+
+            .description {
+                font-size: 12px;
+            }
+
+            .popular-badge {
+                font-size: 9px;
+                padding: 5px 7px;
+            }
+
+            .info {
+                grid-template-columns: 1fr;
+            }
+
+            .order {
+                padding: 22px;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .products {
+grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🎮</div>
+
+    <h1>PUBG Mobile <span>UC Store</span></h1>
+
+    <p>Быстрое оформление заказа UC</p>
+</header>
+
+<div class="container">
+
+    <div class="section-title">
+        <h2>💎 Выберите пакет UC</h2>
+        <p>Выберите нужное количество UC</p>
+    </div>
+
+    <div class="products">
+
+        <div class="card">
+            <div class="uc-icon">💎</div>
+            <div class="uc">60 UC</div>
+            <div class="description">Небольшой пакет</div>
+            <div class="price">99 ₽</div>
+            <button onclick="buy('60 UC', '99 ₽')">
+                Купить
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="uc-icon">💎</div>
+            <div class="uc">325 UC</div>
+            <div class="description">Выгодный пакет</div>
+            <div class="price">499 ₽</div>
+            <button onclick="buy('325 UC', '499 ₽')">
+                Купить
+            </button>
+        </div>
+
+        <div class="card popular">
+            <div class="popular-badge">ПОПУЛЯРНЫЙ</div>
+
+            <div class="uc-icon">🔥</div>
+            <div class="uc">660 UC</div>
+            <div class="description">Выбор игроков</div>
+            <div class="price">899 ₽</div>
+
+            <button onclick="buy('660 UC', '899 ₽')">
+                Купить
+            </button>
+        </div>
+
+        <div class="card">
+            <div class="uc-icon">💎</div>
+            <div class="uc">1800 UC</div>
+            <div class="description">Большой пакет</div>
+            <div class="price">1 999 ₽</div>
+
+            <button onclick="buy('1800 UC', '1 999 ₽')">
+                Купить
+            </button>
+        </div>
+
+    </div>
+
+    <div class="info">
+
+        <div class="info-box">
+            <div class="icon">⚡</div>
+            <strong>Быстро</strong>
+            <span>Заказ обрабатывается быстро</span>
+        </div>
+
+        <div class="info-box">
+            <div class="icon">🔒</div>
+            <strong>Безопасно</strong>
+            <span>Не передавайте пароль от аккаунта</span>
+        </div>
+
+        <div class="info-box">
+            <div class="icon">💬</div>
+            <strong>Поддержка</strong>
+            <span>Свяжитесь с нами через Telegram</span>
+        </div>
+
+    </div>
+
+    <div class="order" id="order">
+
+        <h2>🛒 Оформление заказа</h2>
+
+        <div class="selected-product" id="selected">
+            Выберите пакет
+        </div>
+
+        <label for="playerId">
+            PUBG Mobile ID
+        </label>
+
+        <input
+            id="playerId"
+            type="text"
+            placeholder="Введите ваш PUBG ID"
+            autocomplete="off"
+        >
+
+        <label for="telegram">
+            Telegram
+        </label>
+
+        <input
+            id="telegram"
+            type="text"
+            placeholder="@username"
+            autocomplete="off"
+        >
+
+        <button
+            class="submit-btn"
+            onclick="confirmOrder()"
+            id="submitButton"
+        >
+            ✅ Оформить заказ
+        </button>
+
+        <button
+            class="back"
+            onclick="back()"
+        >
+            ← Назад
+        </button>
+
+    </div>
+
+</div>
+
+<footer>
+    PUBG Mobile UC Store © 2026
+</footer>
+
+<script>
+
+let selectedProduct = "";
+let selectedPrice = "";
+
+function buy(product, price) {
+
+    selectedProduct = product;
+    selectedPrice = price;
+
+    document.getElementById("selected").innerText =
+        product + " — " + price;
+
+    document.getElementById("order").style.display = "block";
+
+    setTimeout(function () {
+        document.getElementById("order").scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }, 50);
+}
+
+
+function back() {
+
+    document.getElementById("order").style.display = "none";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+async function confirmOrder() {
+
+    const id = document.getElementById("playerId").value.trim();
+const telegram = document.getElementById("telegram").value.trim();
+
+    if (selectedProduct === "" || selectedPrice === "") {
+        alert("Сначала выбери пакет UC");
+        return;
+    }
+
+    if (id === "") {
+        alert("Введи PUBG ID");
+        document.getElementById("playerId").focus();
+        return;
+    }
+
+    if (telegram === "") {
+        alert("Введи Telegram");
+        document.getElementById("telegram").focus();
+        return;
+    }
+
+    const button = document.getElementById("submitButton");
+
+    button.disabled = true;
+    button.innerText = "⏳ Отправка...";
+
+    try {
+
+        const response = await fetch("/order", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                product: selectedProduct,
+                price: selectedPrice,
+                player_id: id,
+                telegram: telegram
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+
+            alert(
+                "✅ Заказ отправлен!\n\n" +
+                "Товар: " + selectedProduct + "\n" +
+                "Цена: " + selectedPrice
+            );
+
+            document.getElementById("playerId").value = "";
+            document.getElementById("telegram").value = "";
+
+        } else {
+
+            alert("❌ Не удалось отправить заказ");
+
+        }
+
+    } catch (error) {
+
+        console.error(error);
+
+        alert(
+            "❌ Сервер недоступен\n\n" +
+            "Попробуйте ещё раз."
+        );
+
+    } finally {
+
+        button.disabled = false;
+        button.innerText = "✅ Оформить заказ";
+    }
+}
+
+</script>
+
+</body>
+</html>
