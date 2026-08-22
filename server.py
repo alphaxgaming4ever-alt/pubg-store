@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify, send_from_directory
 import requests
+import os
 
 app = Flask("pubg_store")
 
-import os
 BOT_TOKEN = os.environ.get("BOT_TOKEN")
 CHAT_ID = "1338644072"
+
 
 @app.route("/")
 def home():
@@ -14,6 +15,7 @@ def home():
 
 @app.route("/order", methods=["POST"])
 def order():
+
     data = request.get_json()
 
     product = data.get("product", "")
@@ -31,20 +33,31 @@ def order():
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    response = requests.post(
-        url,
-        json={
-            "chat_id": CHAT_ID,
-            "text": message
-        },
-        timeout=10
+    try:
+
+        response = requests.post(
+            url,
+            json={
+                "chat_id": CHAT_ID,
+                "text": message
+            },
+            timeout=10
+        )
+
+        if response.ok:
+            return jsonify({"success": True})
+
+        return jsonify({"success": False}), 500
+
+    except Exception as error:
+
+        print(error)
+
+        return jsonify({"success": False}), 500
+
+
+if name == "__main__":
+    app.run(
+        host="0.0.0.0",
+        port=5000
     )
-
-    if response.ok:
-        return jsonify({"success": True})
-
-    return jsonify({"success": False}), 500
-
-
-if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000)
