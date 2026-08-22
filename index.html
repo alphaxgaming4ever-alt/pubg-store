@@ -8,8 +8,7 @@
 <meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
-<title>BOSS STORE</title>
-
+<title>BOSS STORE — PUBG Mobile UC</title>
 
 <style>
 
@@ -26,19 +25,15 @@ html {
 }
 
 body {
-
     font-family: Arial, Helvetica, sans-serif;
-
-    color: #ffffff;
-
     background:
         radial-gradient(
-            circle at 50% -20%,
+            circle at 50% -10%,
             #4b350b 0%,
-            #171b25 35%,
-            #070910 75%
+            #171b25 32%,
+            #070910 70%
         );
-
+    color: #fff;
     min-height: 100vh;
 }
 
@@ -46,25 +41,18 @@ body {
 /* ===== HEADER ===== */
 
 header {
-
-    position: sticky;
-
-    top: 0;
-
-    z-index: 1000;
-
-    height: 75px;
-
+    height: 76px;
     padding: 0 6%;
 
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    background:
-        rgba(7, 9, 16, 0.9);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+
+    background: rgba(7, 9, 16, .92);
 
     backdrop-filter: blur(18px);
 
@@ -74,29 +62,21 @@ header {
 
 
 .logo {
-
     display: flex;
-
     align-items: center;
-
     gap: 12px;
 
     font-size: 22px;
-
     font-weight: 900;
 }
 
 
 .logo-icon {
-
     width: 44px;
-
     height: 44px;
 
     display: flex;
-
     align-items: center;
-
     justify-content: center;
 
     border-radius: 13px;
@@ -117,28 +97,21 @@ header {
 
 
 .logo span {
-
     color: #ffc34d;
-
 }
 
 
 nav {
-
     display: flex;
-
     gap: 28px;
 }
 
 
 nav a {
-
     color: #aeb5c2;
-
     text-decoration: none;
 
     font-size: 14px;
-
     font-weight: 700;
 
     transition: .2s;
@@ -146,51 +119,35 @@ nav a {
 
 
 nav a:hover {
-
     color: #ffc34d;
-
 }
 
 
 /* ===== HERO ===== */
 
 .hero {
-
-    position: relative;
-
-    min-height: 530px;
+    min-height: 540px;
 
     display: flex;
-
     align-items: center;
 
     padding: 80px 7%;
 
+    position: relative;
+
     overflow: hidden;
-
-    background:
-
-        linear-gradient(
-            90deg,
-            rgba(7,9,16,.98),
-            rgba(7,9,16,.78),
-            rgba(7,9,16,.25)
-        );
 }
 
 
 .hero::after {
-
     content: "";
 
     position: absolute;
 
     width: 500px;
-
     height: 500px;
 
-    right: 5%;
-
+    right: 3%;
     top: 20px;
 
     background: #f5a623;
@@ -198,23 +155,18 @@ nav a:hover {
     filter: blur(170px);
 
     opacity: .15;
-
 }
 
 
 .hero-content {
-
     position: relative;
-
     z-index: 2;
 
-    max-width: 650px;
-
+    max-width: 680px;
 }
 
 
 .tag {
-
     display: inline-block;
 
     padding: 8px 14px;
@@ -239,7 +191,6 @@ nav a:hover {
 
 
 .hero h1 {
-
     font-size:
         clamp(48px, 7vw, 82px);
 
@@ -252,14 +203,11 @@ nav a:hover {
 
 
 .hero h1 span {
-
     color: #ffc34d;
-
 }
 
 
 .hero p {
-
     max-width: 570px;
 
     color: #969eae;
@@ -269,20 +217,16 @@ nav a:hover {
     line-height: 1.6;
 
     margin-bottom: 30px;
-
 }
 
 
 .buttons {
-
     display: flex;
-
     gap: 14px;
 }
 
 
 .btn {
-
     display: inline-block;
 
     padding: 16px 28px;
@@ -297,8 +241,12 @@ nav a:hover {
 }
 
 
-.btn-gold {
+.btn:hover {
+    transform: translateY(-3px);
+}
 
+
+.btn-gold {
     background:
         linear-gradient(
             135deg,
@@ -307,12 +255,10 @@ nav a:hover {
         );
 
     color: #151515;
-
 }
 
 
 .btn-dark {
-
     background:
         rgba(255,255,255,.05);
 
@@ -320,80 +266,378 @@ nav a:hover {
         1px solid #30394a;
 
     color: white;
-
 }
 
 
-.btn:hover {
+/* ===== CONTAINER ===== */
 
-    transform:
-        translateY(-3px);
-
-}
-
-
-/* ===== STATS ===== */
-
-.stats {
-
-    position: relative;
-
-    z-index: 5;
-
+.container {
     width:
         min(
             1100px,
             calc(100% - 30px)
         );
 
-    margin:
-        -40px auto 0;
+    margin: auto;
 
+    padding-bottom: 80px;
+}
+
+
+/* ===== SECTION TITLE ===== */
+
+.section-title {
+    text-align: center;
+
+    margin: 80px 0 30px;
+}
+
+
+.section-title small {
+    color: #ffc34d;
+
+    font-size: 12px;
+
+    font-weight: 900;
+}
+
+
+.section-title h2 {
+    margin-top: 8px;
+
+    font-size: 34px;
+}
+
+
+.section-title p {
+    margin-top: 10px;
+
+    color: #7f8797;
+}
+
+
+/* ===== PRODUCTS ===== */
+
+.products {
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    background:
-        rgba(20,25,36,.95);
-
-    border:
-        1px solid #293344;
-
-    border-radius: 20px;
-
-    overflow: hidden;
-
+    gap: 18px;
 }
 
 
-.stat {
+.card {
+    position: relative;
 
-    padding: 25px;
+    padding: 28px 22px;
 
     text-align: center;
 
-    border-right:
-        1px solid #293344;
+    border-radius: 20px;
 
+    background:
+        linear-gradient(
+            145deg,
+            #171d29,
+            #0f141e
+        );
+1px solid #293344;
+
+    transition:
+        transform .25s,
+        border-color .25s,
+        box-shadow .25s;
 }
 
 
-.stat:last-child {
+.card:hover {
+    transform:
+        translateY(-7px);
 
-    border-right: 0;
+    border-color:
+        #f5a623;
 
+    box-shadow:
+        0 20px 50px
+        rgba(0,0,0,.4);
 }
 
 
-.stat strong {
+.card.popular {
+    border-color:
+        #f5a623;
 
-    display: block;
+    box-shadow:
+        0 0 35px
+        rgba(245,166,35,.12);
+}
 
+
+.icon {
+    font-size: 48px;
+
+    margin-bottom: 12px;
+}
+
+
+.card h3 {
+    font-size: 28px;
+
+    margin-bottom: 8px;
+}
+
+
+.card p {
+    color: #858d9d;
+
+    font-size: 14px;
+}
+
+
+.price {
     color: #ffc34d;
 
     font-size: 24px;
-    <!-- ===== UC PRODUCTS ===== -->
+
+    font-weight: 900;
+
+    margin: 20px 0;
+}
+
+
+.buy {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffc94f,
+            #e9930d
+        );
+
+    color: #151515;
+
+    transition: .2s;
+}
+
+
+.buy:hover {
+    transform: scale(1.02);
+
+    filter: brightness(1.08);
+}
+
+
+.badge {
+    position: absolute;
+
+    top: 12px;
+    right: 12px;
+
+    padding: 6px 9px;
+
+    border-radius: 20px;
+
+    background: #f5a623;
+
+    color: #111;
+
+    font-size: 9px;
+
+    font-weight: 900;
+}
+
+
+/* ===== MOBILE ===== */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 0 18px;
+    }
+
+    nav {
+        gap: 12px;
+    }
+
+    nav a {
+        font-size: 12px;
+    }
+
+    .hero {
+        min-height: 470px;
+
+        padding:
+            60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 52px;
+
+        letter-spacing: -3px;
+    }
+
+    .hero p {
+        font-size: 15px;
+    }
+
+    .buttons {
+        flex-direction: column;
+    }
+
+    .products {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 12px;
+    }
+
+    .card {
+        padding: 22px 12px;
+    }
+
+    .card h3 {
+        font-size: 22px;
+    }
+
+    .icon {
+        font-size: 38px;
+    }
+
+    .price {
+        font-size: 20px;
+    }
+
+    .buy {
+        padding: 12px 8px;
+
+        font-size: 14px;
+    }
+
+}
+
+
+@media (max-width: 400px) {
+
+    .products {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<!-- ===== HEADER ===== -->
+
+<header>
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎮
+        </div>
+
+        BOSS
+        <span>STORE</span>
+
+    </div>
+
+
+    <nav>
+
+        <a href="#products">
+            UC
+        </a>
+
+        <a href="#advantages">
+            Преимущества
+        </a>
+
+        <a href="#support">
+            Поддержка
+        </a>
+
+    </nav>
+
+</header>
+
+
+<!-- ===== HERO ===== -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="tag">
+            🎮 PUBG MOBILE UC STORE
+        </div>
+
+
+        <h1>
+
+            BOSS
+            <span>STORE</span>
+
+        </h1>
+
+
+        <p>
+
+            Покупай UC для PUBG Mobile
+            быстро, удобно и безопасно.
+
+        </p>
+
+
+        <div class="buttons">
+
+            <a
+                href="#products"
+                class="btn btn-gold">
+
+                💎 Купить UC
+
+            </a>
+
+
+            <a
+                href="#support"
+                class="btn btn-dark">
+
+                💬 Поддержка
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ===== PRODUCTS START ===== -->
+
+<main class="container">
+      <!-- ===== UC PRODUCTS ===== -->
 
 <section id="products">
 
@@ -404,8 +648,7 @@ nav a:hover {
         <h2>💎 Выбери пакет UC</h2>
 
         <p>
-            Выбери подходящий пакет
-            и нажми «Купить»
+            Выбери нужное количество UC
         </p>
 
     </div>
@@ -418,21 +661,13 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                💎
-            </div>
+            <div class="icon">💎</div>
 
-            <h3>
-                60 UC
-            </h3>
+            <h3>60 UC</h3>
 
-            <p>
-                Небольшой пакет
-            </p>
+            <p>Небольшой пакет</p>
 
-            <div class="price">
-                99 ₽
-            </div>
+            <div class="price">99 ₽</div>
 
             <button
                 class="buy"
@@ -449,21 +684,13 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                💎
-            </div>
+            <div class="icon">💎</div>
 
-            <h3>
-                325 UC
-            </h3>
+            <h3>325 UC</h3>
 
-            <p>
-                Выгодный пакет
-            </p>
+            <p>Выгодный пакет</p>
 
-            <div class="price">
-                499 ₽
-            </div>
+            <div class="price">499 ₽</div>
 
             <button
                 class="buy"
@@ -478,27 +705,19 @@ nav a:hover {
 
         <!-- 660 UC -->
 
-        <div class="card">
+        <div class="card popular">
 
             <div class="badge">
                 ПОПУЛЯРНЫЙ
             </div>
 
-            <div class="icon">
-                🔥
-            </div>
+            <div class="icon">🔥</div>
 
-            <h3>
-                660 UC
-            </h3>
+            <h3>660 UC</h3>
 
-            <p>
-                Выбор игроков
-            </p>
+            <p>Выбор игроков</p>
 
-            <div class="price">
-                899 ₽
-            </div>
+            <div class="price">899 ₽</div>
 
             <button
                 class="buy"
@@ -515,21 +734,13 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                💎
-            </div>
+            <div class="icon">💎</div>
 
-            <h3>
-                720 UC
-            </h3>
+            <h3>720 UC</h3>
 
-            <p>
-                Средний пакет
-            </p>
+            <p>Средний пакет</p>
 
-            <div class="price">
-                999 ₽
-            </div>
+            <div class="price">999 ₽</div>
 
             <button
                 class="buy"
@@ -546,21 +757,13 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                💎
-            </div>
+            <div class="icon">💎</div>
 
-            <h3>
-                1200 UC
-            </h3>
+            <h3>1200 UC</h3>
 
-            <p>
-                Большой пакет
-            </p>
+            <p>Большой пакет</p>
 
-            <div class="price">
-                1 399 ₽
-            </div>
+            <div class="price">1 399 ₽</div>
 
             <button
                 class="buy"
@@ -577,21 +780,13 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                🔥
-            </div>
+            <div class="icon">🔥</div>
 
-            <h3>
-                1800 UC
-            </h3>
+            <h3>1800 UC</h3>
 
-            <p>
-                Максимальная выгода
-            </p>
+            <p>Максимальная выгода</p>
 
-            <div class="price">
-                1 999 ₽
-            </div>
+            <div class="price">1 999 ₽</div>
 
             <button
                 class="buy"
@@ -608,21 +803,13 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                💎
-            </div>
+            <div class="icon">💎</div>
 
-            <h3>
-                3850 UC
-            </h3>
+            <h3>3850 UC</h3>
 
-            <p>
-                Премиум пакет
-            </p>
+            <p>Премиум пакет</p>
 
-            <div class="price">
-                3 999 ₽
-            </div>
+            <div class="price">3 999 ₽</div>
 
             <button
                 class="buy"
@@ -639,22 +826,15 @@ nav a:hover {
 
         <div class="card">
 
-            <div class="icon">
-                👑
-            </div>
+            <div class="icon">👑</div>
 
-            <h3>
-                8100 UC
-            </h3>
+            <h3>8100 UC</h3>
 
-            <p>
-                VIP пакет
-            </p>
+            <p>VIP пакет</p>
 
-            <div class="price">
-                7 999 ₽
-            </div>
-    <button
+            <div class="price">7 999 ₽</div>
+
+            <button
                 class="buy"
                 onclick="buy('8100 UC','7 999 ₽')">
 
@@ -668,19 +848,15 @@ nav a:hover {
     </div>
 
 </section>
-    <!-- ===== ADVANTAGES ===== -->
+      <!-- ===== ADVANTAGES ===== -->
 
-<section
-    id="advantages"
-    style="margin-top:100px;">
+<section id="advantages">
 
     <div class="section-title">
 
         <small>BOSS STORE</small>
 
-        <h2>
-            Почему выбирают нас?
-        </h2>
+        <h2>Почему выбирают нас?</h2>
 
         <p>
             Простая и удобная покупка UC
@@ -722,7 +898,7 @@ nav a:hover {
 
             <p>
                 Пароль от игрового аккаунта
-                для заказа не требуется.
+                не требуется.
             </p>
 
         </div>
@@ -739,8 +915,8 @@ nav a:hover {
             </h3>
 
             <p>
-                Свяжитесь с нами в Telegram,
-                если вам нужна помощь.
+                Получите помощь через
+                Telegram.
             </p>
 
         </div>
@@ -761,7 +937,7 @@ nav a:hover {
     </h2>
 
     <p>
-        Наша поддержка в Telegram
+        Наша поддержка всегда на связи
     </p>
 
     <a
@@ -776,9 +952,9 @@ nav a:hover {
 </section>
 
 
-<!-- ===== ORDER ===== -->
+<!-- ===== ORDER FORM ===== -->
 
-<div
+<section
     class="order"
     id="order">
 
@@ -838,29 +1014,81 @@ nav a:hover {
 
     </button>
 
-</div>
-    "Content-Type":
-                        "application/json"
+</section>
+      alert(
+            "Введи PUBG ID"
+        );
 
-                },
+        document
+        .getElementById("playerId")
+        .focus();
 
-                body: JSON.stringify({
+        return;
 
-                    product:
-                        selectedProduct,
+    }
 
-                    price:
-                        selectedPrice,
 
-                    player_id:
-                        id,
+    if (!telegram) {
 
-                    telegram:
-                        telegram
+        alert(
+            "Введи Telegram"
+        );
 
-                })
+        document
+        .getElementById("telegram")
+        .focus();
 
-            });
+        return;
+
+    }
+
+
+    const button =
+        document
+        .getElementById("submitButton");
+
+
+    button.disabled = true;
+
+    button.innerText =
+        "⏳ Отправка...";
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/order",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body:
+                        JSON.stringify({
+
+                            product:
+                                selectedProduct,
+
+                            price:
+                                selectedPrice,
+
+                            player_id:
+                                id,
+
+                            telegram:
+                                telegram
+
+                        })
+
+                }
+            );
 
 
         const result =
@@ -879,13 +1107,17 @@ nav a:hover {
 
 
             document
-            .getElementById("playerId")
-            .value = "";
+                .getElementById(
+                    "playerId"
+                )
+                .value = "";
 
 
             document
-            .getElementById("telegram")
-            .value = "";
+                .getElementById(
+                    "telegram"
+                )
+                .value = "";
 
 
         } else {
@@ -901,10 +1133,8 @@ nav a:hover {
 
         console.error(error);
 
-
         alert(
-            "❌ Сервер недоступен\n\n" +
-            "Попробуйте ещё раз."
+            "❌ Сервер недоступен"
         );
 
     }
@@ -925,3 +1155,4 @@ nav a:hover {
 </body>
 
 </html>
+    border:
