@@ -10,7 +10,8 @@ CHAT_ID = "1338644072"
 
 @app.route("/")
 def home():
-    return send_from_directory(".", "index.html")
+    with open("index.html", "r", encoding="utf-8") as f:
+        return f.read()
 
 
 @app.route("/order", methods=["POST"])
